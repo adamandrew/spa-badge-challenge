@@ -1,5 +1,5 @@
 $.ready(function(){
-  $("a").on("click", function(event){
+  $(".teacher").on("click", function(event){
     event.preventDefault();
     var url = this.getAttribute("href")
     var anchor = this
@@ -10,17 +10,11 @@ $.ready(function(){
     }).then(function(response){
       var object = JSON.parse(response)
       var badges = object.badges
-
-      for (i = 0; i < badges.length; i++) {
-        var phrase = badges[i].phrase
-        var textnode = document.createTextNode(phrase);
-        var node = document.createElement("BR")
-        anchor.parentElement.appendChild(node);
-        anchor.parentElement.appendChild(textnode);
-      }
-
+      var templateScript = SweetSelector.select("#badge-template")[0].innerText
+      var template = Handlebars.compile(templateScript);
+      var context = {'badges': badges}
+      var compiledTemplate = template(context)
+      SweetSelector.select("#container")[0].innerHTML = compiledTemplate
     })
-
-
   })
 })
