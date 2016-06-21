@@ -12,9 +12,7 @@
       <h1> SPA Badge </h1>
     </div>
     <h1> SF Teachers </h1>
-      <ul>
-        <li><a class="teacher" href="http://spa-badge-api.herokuapp.com/teachers/9">Walker</a></li>
-        <div id="container"></div>
+      <ul id="teacher-container">
         <li><a href="sample-page.html">Sample Page (to see what the badges view should look like)</a></li>
       </ul>
   </div>
@@ -24,7 +22,7 @@
 <script id="badge-template" type="text/x-handlebars-template">
   {{#each badges}}
   <div id={{this.id}} class="slogan">
-  <div class="body">{{this.id}}. {{this.phrase}}</div>
+  <div class="body">{{this.phrase}}</div>
     <div class="vote-on">
       <form action="#">
         <input type="hidden" name="slogan_id" value=1>
@@ -48,5 +46,12 @@
       {{this.votes}}
     </div>
   </div>
+  {{/each}}
+</script>
+
+<script id="teacher-template" type="text/x-handlebars-template">
+  {{#each teachers}}
+  <li><a class="teacher" href="http://spa-badge-api.herokuapp.com/teachers/{{this.id}}">{{this.name}}</a></li>
+  <div id="badge-container{{this.id}}"></div>
   {{/each}}
 </script>
