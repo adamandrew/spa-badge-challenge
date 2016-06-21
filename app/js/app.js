@@ -3,7 +3,6 @@ $.ready(function(){
     event.preventDefault();
     var url = this.getAttribute("href")
     var anchor = this
-    console.log(url);
 
     $.ajax({
       url: url,
@@ -15,8 +14,8 @@ $.ready(function(){
       for (i = 0; i < badges.length; i++) {
         var phrase = badges[i].phrase
         var textnode = document.createTextNode(phrase);
-        console.log(phrase)
-
+        var node = document.createElement("BR")
+        anchor.parentElement.appendChild(node);
         anchor.parentElement.appendChild(textnode);
       }
 
