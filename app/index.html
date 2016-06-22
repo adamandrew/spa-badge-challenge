@@ -50,7 +50,7 @@
   </div>
   <div class="add-badge">
     <h3> Add a Badge: </h3>
-    <form action="http://spa-badge-api.herokuapp.com/teachers/{{teacher_id}}/badges">
+    <form action="http://localhost:3000/teachers/{{teacher_id}}/badges">
       <input type="hidden" name="user_id" value={{teacher_id}} />
       <input type="text" id= "name" name="content" />
       <input type="image" src="img/add_button.png" alt="Add Slogan" />
@@ -60,7 +60,7 @@
 
 <script id="teacher-template" type="text/x-handlebars-template">
   {{#each teachers}}
-  <li><a class="teacher" href="http://spa-badge-api.herokuapp.com/teachers/{{this.id}}">{{this.name}}</a></li>
+  <li><a class="teacher" href="http://localhost:3000/teachers/{{this.id}}">{{this.name}}</a></li>
   <div id="badge-container{{this.id}}"></div>
   {{/each}}
 </script>

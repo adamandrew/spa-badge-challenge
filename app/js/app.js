@@ -1,6 +1,6 @@
 $.ready(function(){
   $.ajax({
-    url: "http://spa-badge-api.herokuapp.com/teachers",
+    url: "http://localhost:3000/teachers",
     type: "get"
   }).then(function(response) {
     var teachers = JSON.parse(response)
