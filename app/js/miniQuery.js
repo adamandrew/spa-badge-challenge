@@ -61,17 +61,26 @@ var AjaxWrapper = {
   request: function(params) {
     return new Promise(function(resolve, reject){
       var oReq = new XMLHttpRequest();
-      oReq.open(params.type, params.url);
+
+      if (params.type.toUpperCase === "GET") {
+        oReq.open(params.type, params.url);
+        oReq.send();
+      } else {
+        oReq.open(params.type, params.url);
+        oReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        oReq.send(params.data)
+      }
+
       oReq.onload = function() {
 
-        if (oReq.status == 200){
+        if (oReq.status >= 200 && oReq.status < 300){
           resolve(oReq.response);
         }
         else {
           reject(Error(oReq.statusText));
         }
       }
-      oReq.send();
+
     })
   }
 };
