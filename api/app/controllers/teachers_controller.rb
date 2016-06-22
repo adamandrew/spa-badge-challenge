@@ -11,7 +11,7 @@ class TeachersController < ApplicationController
 
   def show
     teacher = Teacher.find(params[:id])
-    badges = teacher.badges
+    badges = teacher.badges.order(votes: :desc)
     teacher_json = {id: teacher.id, name: teacher.name, badges: badges}.to_json
     render json: teacher_json
   end
