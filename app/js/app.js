@@ -36,8 +36,12 @@ $.ready(function(){
             type: "post",
             data: "phrase=" + phrase + "&votes=" + "0" + "&teacher_id=" + teacher_id
           }).then(function(response) {
-            console.log(response)
-
+            var badge = JSON.parse(response)
+            var templateScript = SweetSelector.select("#new-badge-template")[0].innerText
+            var template = Handlebars.compile(templateScript);
+            var context = {'badge': badge}
+            var compiledTemplate = template(context)
+            SweetSelector.select("#badge-container" + teacher.id)[0].children[0].innerHTML += compiledTemplate
 
           })
         })
